@@ -38,7 +38,7 @@ app.get("/scrape", function(req, res){
 	request("https://www.nytimes.com/", function(error, response, html) {
 		var $ = cheerio.load(html);
 
-		$("h2.story-heading").each(function(i, elemetn){
+		$("h2.story-heading").each(function(i, element){
 			var result = {};
 
 			result.title = $(this).children("a").text();
@@ -60,7 +60,7 @@ app.get("/scrape", function(req, res){
 });
 
 //route to retrieve articles from databse
-app.get("/articles", , function(req, res){
+app.get("/articles", function(req, res){
 
 	Article.find({}, function(error, doc){
 
@@ -80,7 +80,7 @@ app.get("/articles/:id", function(req, res){
 	.populate("note")
 	.exec(function(error, doc){
 
-		if(err){
+		if(error){
 			console.log(error);
 		}
 		else{
