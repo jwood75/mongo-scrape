@@ -105,6 +105,19 @@ app.post("/articles/:id", function(req, res){
 	});
 });
 
+//route to delete note
+app.delete("/notes/:id", function(req, res){
+	
+	Note.destroy({"_.id": req.params.id}, function(error, doc){
+		if(error){
+			console.log(error);
+		}
+		else{
+			res.send(doc);
+		}
+	});
+});
+
 //loading index.html
 app.get("/", function(req, res){
 	res.sendFile("public/index.html");
